@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -18,26 +18,64 @@
         
         <div class="container">
             <div id="logo" class="row text-center">
-                <h1>Noisy Tweets</h1>&nbsp;<span class="glyphicon glyphicon-search"></span>
+                <h1>Noisy Tweets <span id="play-btn" class="pull-right glyphicon glyphicon-play"></span></h1>
             </div>
-
+            <br />
 
             <div class="row">
                 <div id="left-container" class="col-sm-4">
-                    <div class="emoji-row">
+                    <div class="well">
                         <h4>Emoji Stream</h4>
-                        <div id="emojis-section" class="col-sm-12">
+                        <div id="emojis-section">
                             {{ emojis }}
                         </div>
                     </div>
 
                     <div id="tweets" class="row">
-                        tweets go here
+                        <div class="well">
+                            <table id="tweets-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tweet</th>
+                                        <th>Sentiment</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr class="danger">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                    <tr class="success">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                    <tr class="danger">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                    <tr class="success">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                    <tr class="danger">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                    <tr class="success">
+                                        <td>das</td>
+                                        <td>sadasdasdasd</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
                 <div id="right-container" class="col-sm-8">
-                    GRAPH
+                    <div class="well">
+                            Graph
+                   </div>
                 </div>
             </div>
         </div>

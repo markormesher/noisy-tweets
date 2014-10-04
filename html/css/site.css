@@ -9,3 +9,7 @@ body {
     margin-left: -15px;
     background-color:#eeeeee;
 }
+
+#play-btn {
+ cursor: pointer;
+}
