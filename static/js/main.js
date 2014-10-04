@@ -30,7 +30,7 @@ var myLineChart = new Chart(ctx).Line(data, {
 redraw = function() {
     var ctx = document.getElementById("moodChart").getContext("2d");
     var data = {
-        labels: graphLabels
+        labels: graphLabels,
         datasets: [
             {
                 label: "Live Mood Dataset",
