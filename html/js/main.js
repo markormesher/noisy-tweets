@@ -2,7 +2,7 @@
 // GRAPH
 
 // Get the context of the canvas element we want to select
-var ctx = document.getElementById("myChart").getContext("2d");
+var ctx = document.getElementById("moodChart").getContext("2d");
 
 var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -33,3 +33,7 @@ var data = {
 var myLineChart = new Chart(ctx).Line(data, {
     showScale: true
 });
+
+redraw = function() {
+    $("#moodChart").html("<canvas id=\"canvas\" height=\"400\" width=\"710\"></canvas>");
+}
