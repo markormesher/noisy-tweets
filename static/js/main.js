@@ -67,47 +67,52 @@ redraw = function() {
 // 60 ~ 100
 addTweets = function(tweet_message, mood) {
 
+    var style;
+    
     if(mood < -60) {
-        $( "tbody" ).append( "<tr class=\"super-danger\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
+        style = "super-danger";
     } else if (mood >= -59 && mood <= -20) {
-        $( "tbody" ).append( "<tr class=\"danger\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
+        style = "danger";
     } else if (mood >= -19 && mood <= 20) {
-        $( "tbody" ).append( "<tr><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
+        style = "";
     } else if (mood >= 21 && mood <= 60) {
-        $( "tbody" ).append( "<tr class=\"success\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
+        style = "success";
     } else if (mood > 60) {
-        $( "tbody" ).append( "<tr class=\"super-success\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
+        style = "super-success";
     }
+    
+    $( "tbody" ).prepend( "<tr class=\"" + style + "\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
 }
 
 // Add emojis
 addEmojis = function(imgLink) {
-    $( "#emojis-section p" ).append( "<img src=\"static/emoji-data/img-hangouts-20/" + imgLink + "\">" );
+    console.log(imgLink);
+    $( "#emojis-section p" ).append('<img src="static/emoji-data/img-hangouts-20/' + imgLink + '" />');
 }
 
 $(function () {
-                $('.tltp').tooltip();
-            });
+    $('.tltp').tooltip();
+});
 
-            $('#play-btn').click(function() {
-               if ($(this).hasClass('glyphicon-play') ) {
+$('#play-btn').click(function() {
+    if ($(this).hasClass('glyphicon-play') ) {
 
-                    $(this).removeClass('glyphicon-play');
-                    $(this).addClass('glyphicon-pause');
-                    $(this).attr('title', 'Click to play music')
+            $(this).removeClass('glyphicon-play');
+            $(this).addClass('glyphicon-pause');
+            $(this).attr('title', 'Click to play music')
                       .tooltip('fixTitle')
                       .data('bs.tooltip')
                       .$tip.find('.tooltip-inner')
                       .text('Click to play music');
 
-               } else if ($(this).hasClass('glyphicon-pause')) {
+    } else if ($(this).hasClass('glyphicon-pause')) {
 
-                   $(this).removeClass('glyphicon-pause');
-                   $(this).addClass('glyphicon-play');
-                   $(this).attr('title', 'Click to stop music')
+        $(this).removeClass('glyphicon-pause');
+        $(this).addClass('glyphicon-play');
+        $(this).attr('title', 'Click to stop music')
                       .tooltip('fixTitle')
                       .data('bs.tooltip')
                       .$tip.find('.tooltip-inner')
                       .text('Click to stop music');
-               }
-            });
+    }
+});
