@@ -1,6 +1,10 @@
 from flask import Flask, render_template
 from flask.ext.socketio import SocketIO, emit
 
+
+# app setup
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = ''
 socketio = SocketIO(app)
@@ -9,6 +13,9 @@ socketio = SocketIO(app)
 @app.route('/noisytweets')
 def index():
     return render_template('index.html')
+
+
+# socket setup
 
 
 @socketio.on('connect', namespace='/noisytweets')
@@ -21,9 +28,11 @@ def test_disconnect():
     print('Client disconnected')
 
 
-@socketio.on('test event', namespace='/noisytweets')
-def send_log(msg):
-    emit('log event', {'msg': msg})
+# communication methods
+
+
+def send_log_message(msg):
+    emit('log message', {'msg': msg})
 
 
 def send_emoji_event(which):
@@ -33,9 +42,9 @@ def send_emoji_event(which):
 def send_mood_event(mood):
     emit('mood event', {'mood': mood})
 
-try:
-    if __name__ == '__main__':
-        socketio.run(app)
-except KeyboardInterrupt:
-    print 'Bye bye!'
-    exit()
+
+# done
+
+
+def start_server():
+    socketio.run(app)
