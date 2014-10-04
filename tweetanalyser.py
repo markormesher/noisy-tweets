@@ -9,7 +9,10 @@ class TweetAnalyser:
         emojis = []
 
         for character in tweet:
-            codepoint = format(ord(character), 'x').upper()
+            codepoint_dec = ord(character)
+            codepoint = format(codepoint_dec, 'x').upper()
+            if codepoint_dec < 255:
+                continue
             for emoji in self._emojidata:
                 codepoints = [emoji['unified'], emoji['docomo']]
                 if codepoint in codepoints:
