@@ -1,5 +1,5 @@
-var graphLabels = [];
-var graphData = [];
+var graphLabels = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 // GRAPH
 
@@ -17,7 +17,6 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#ffaaaa",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            // TODO: Assign array of data here
             data: graphData
         }
     ]
@@ -71,6 +70,9 @@ addTweet = function(tweet_message, mood) {
     } else {
         style = "super-success";
     }
+    
+    graphLabels.shift();
+    graphData.shift();
     
     graphLabels.push("");
     graphData.push(mood);
