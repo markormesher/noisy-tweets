@@ -2,23 +2,40 @@
     <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/cerulean-bootstrap.min.css">
-    <link rel="stylesheet" href="css/site.css">        
+    <link rel="stylesheet" href="css/site.css">  
+    <link rel="stylesheet" href="css/styles.css">  
+    <script src="js/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+
     </head>
     <body>
         <div class="container">
             <div id="logo" class="row">
                 <h1>Noisy Tweets</h1>
             </div>
-            
+            <br/>
+            <div class="row">
+                <div class="emoji-row">
+                    <h4>Emoji Stream</h4>
+                    <div id="emojis-section" class="col-sm-12">
+                        {{ emojis }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+        
             <div class="row">
                 <div id="emojis-section" class="col-sm-4">
-                    :):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):):)
+                    
                 </div>
                 
                 <div id="search-section" class="col-sm-8">
-                
+                    
                 </div>
             </div>
+        
         </div>
         
         
