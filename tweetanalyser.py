@@ -1,6 +1,5 @@
 import json
 import flaskserver
-from random import randrange
 from textblob import TextBlob
 
 class TweetAnalyser:
