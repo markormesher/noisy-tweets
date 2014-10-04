@@ -73,9 +73,9 @@ addTweet = function(tweet_message, mood) {
     } else {
         style = "super-success";
     }
-    
+
     pendingMoodQueue.push(mood);
-    
+
 	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
 };
 
@@ -86,33 +86,33 @@ addEmoji = function(imgLink) {
 };
 
 processMoodQueue = function() {
-    
+
     var averageMood = lastMoodPushed;
-    
-    if(processMoodQueue.length != 0) {
+
+    if(pendingMoodQueue.length != 0) {
         var sum = 0;
-        for(var i = 0; i < processMoodQueue.length; ++i) {
-            sum += processMoodQueue[i];
+        for(var i = 0; i < pendingMoodQueue.length; ++i) {
+            sum += pendingMoodQueue[i];
         }
-        
-        averageMood = Math.round(sum/processMoodQueue.length);
-        processMoodQueue = [];
+
+        averageMood = Math.round(sum/pendingMoodQueue.length);
+		pendingMoodQueue = [];
     }
-    
+
     graphLabels.shift();
     graphData.shift();
-    
+
     graphLabels.push("");
     graphData.push(averageMood);
 
     redraw();
-    
+
     lastMoodPushed = averageMood;
-    
+
     setTimeout(function() {
         processMoodQueue();
-    }, 1000);
-}
+    }, 500);
+};
 
 processMoodQueue();
 
