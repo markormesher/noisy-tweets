@@ -1,4 +1,9 @@
+# Twitter creds
 CONSUMER_KEY = ''
 CONSUMER_SECRET = ''
 ACCESS_TOKEN = ''
 ACCESS_TOKEN_SECRET = ''
+
+# Twilio creds
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = ''
