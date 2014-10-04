@@ -8,11 +8,10 @@
 				$('#log').append('<p>LOG: ' + msg + '</p>');
 			});
 			NT.registerEmojiMethod(function(which) {
-				//$('#log').append('<p>EMOJI: ' + which + '</p>');
-				$('#log').append('<img src="static/emoji-data/img-hangouts-20/' + which + '" />');
+				$('#log').append('<p>EMOJI: <img src="static/emoji-data/img-hangouts-20/' + which + '" /></p>');
 			});
-			NT.registerMoodMethod(function(mood) {
-				//$('#log').append('<p>MOOD: ' + mood + '</p>');
+			NT.registerTweetMethod(function(tweet) {
+				$('#log').append('<p>MOOD: ' + tweet.mood + ' => ' + tweet.text + '</p>');
 			});
 			$(document).ready(function() {
 				NT.setup();

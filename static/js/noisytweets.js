@@ -3,15 +3,15 @@ NT = {
 	namespace: '/noisytweets',
 	logMethods: [],
 	emojiMethods: [],
-	moodMethods: [],
+	tweetMethods: [],
 	registerLogMethod: function(f) {
 		this.logMethods[this.logMethods.length] = f;
 	},
 	registerEmojiMethod: function(f) {
 		this.emojiMethods[this.emojiMethods.length] = f;
 	},
-	registerMoodMethod: function(f) {
-		this.moodMethods[this.moodMethods.length] = f;
+	registerTweetMethod: function(f) {
+		this.tweetMethods[this.tweetMethods.length] = f;
 	},
 	setup: function() {
 		this.runLogMethods('Connecting to http://' + document.domain + ':' + location.port + this.namespace);
@@ -25,8 +25,8 @@ NT = {
 		this.socket.on('emoji event', function(input) {
 			NT.runEmojiMethods(input.which);
 		});
-		this.socket.on('mood event', function(input) {
-			NT.runMoodMethods(input.mood);
+		this.socket.on('tweet event', function(input) {
+			NT.runTweetMethods(input);
 		});
 	},
 	runLogMethods: function(msg) {
@@ -39,9 +39,9 @@ NT = {
 			this.emojiMethods[i](which);
 		}
 	},
-	runMoodMethods: function(mood) {
-		for (var i = 0; i < this.moodMethods.length; ++i) {
-			this.moodMethods[i](mood);
+	runTweetMethods: function(tweet) {
+		for (var i = 0; i < this.tweetMethods.length; ++i) {
+			this.tweetMethods[i](tweet);
 		}
 	}
 };

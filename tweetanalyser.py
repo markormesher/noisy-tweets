@@ -24,4 +24,7 @@ class TweetAnalyser:
         emojis = self._extract_emojis(tweet)
         for e in emojis:
             flaskserver.send_emoji_event(e['image'])
-        flaskserver.send_mood_event(randrange(-100, 100))
+        flaskserver.send_tweet_event({
+            'text': tweet,
+            'mood': randrange(-100, 100)
+        })
