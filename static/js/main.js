@@ -84,3 +84,30 @@ addTweets = function(tweet_message, mood) {
 addEmojis = function(imgLink) {
     $( "emojis-section p" ).append( "<img src=" + imgLink + ">" );   
 }
+
+$(function () {
+                $('.tltp').tooltip();
+            });
+            
+            $('#play-btn').click(function() {
+               if ($(this).hasClass('glyphicon-play') ) {
+                   
+                    $(this).removeClass('glyphicon-play');
+                    $(this).addClass('glyphicon-pause');
+                    $(this).attr('title', 'Click to play music')
+                      .tooltip('fixTitle')
+                      .data('bs.tooltip')
+                      .$tip.find('.tooltip-inner')
+                      .text('Click to play music');
+                   
+               } else if ($(this).hasClass('glyphicon-pause')) {
+                   
+                   $(this).removeClass('glyphicon-pause'); 
+                   $(this).addClass('glyphicon-play');
+                   $(this).attr('title', 'Click to stop music')
+                      .tooltip('fixTitle')
+                      .data('bs.tooltip')
+                      .$tip.find('.tooltip-inner')
+                      .text('Click to stop music');
+               }
+            });
