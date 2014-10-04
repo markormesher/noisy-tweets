@@ -1,6 +1,7 @@
 import json
 import flaskserver
 from random import randrange
+from textblob import TextBlob
 
 class TweetAnalyser:
 
@@ -26,5 +27,5 @@ class TweetAnalyser:
             flaskserver.send_emoji_event(e['image'])
         flaskserver.send_tweet_event({
             'text': tweet,
-            'mood': randrange(-100, 100)
+            'mood': int(TextBlob(tweet).sentiment.polarity * 100)
         })
