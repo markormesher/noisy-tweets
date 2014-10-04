@@ -7,6 +7,7 @@ ACCESS_TOKEN_SECRET = ''
 # Twilio creds
 TWILIO_ACCOUNT_SID = ''
 TWILIO_AUTH_TOKEN = ''
+TWILIO_FROM = ''
 
 # Twilioserver creds
 TWILIO_SERVER_SECRET = ''
