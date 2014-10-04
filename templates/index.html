@@ -1,27 +1,79 @@
+<!DOCTYPE html>
 <html>
-	<head>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noisy Tweets</title>
+
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="static/css/bootstrap.css"/>
+        <link rel="stylesheet" href="static/css/cerulean-bootstrap.min.css"/>
+        <link rel="stylesheet" href="static/css/site.css"/>
+    </head>
+    <body>
+
+        <div class="container">
+            <div id="logo" class="row text-center">
+                <h1>Noisy Tweets <span id="stop-btn" class="pull-right glyphicon glyphicon-stop"></span></h1>
+            </div>
+            <br />
+
+            <div class="row">
+                <div id="left-container" class="col-sm-4">
+                    <div class="row well">
+                        <h4>Emoji Stream</h4>
+                        <div id="emojis-section">
+                            <p></p>
+                        </div>
+                    </div>
+
+                    <div id="tweets" class="row well">
+                            <h4>Live Tweets</h4>
+                            <table id="tweets-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tweet</th>
+                                        <th>Sentiment</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+
+                <div id="right-container" class="col-sm-8">
+                    <div class="well">
+                        <canvas id="moodChart" width="710" height="400"></canvas>
+                   </div>
+                </div>
+            </div>
+        </div>
 		<script type="text/javascript" src="static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="static/js/Chart.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 		<script type="text/javascript" src="static/js/noisytweets.js"></script>
+		<script type="text/javascript" src="static/js/main.js"></script>
 		<script type="text/javascript">
 			NT.registerLogMethod(function(msg) {
-				$('#log').append('<p>LOG: ' + msg + '</p>');
+				// TODO: method stub
+				// msg = the log message
 			});
 			NT.registerEmojiMethod(function(which) {
-				$('#log').append('<p>EMOJI: <img src="static/emoji-data/img-hangouts-20/' + which + '" /></p>');
+				// TODO: method stub
+				// which = image file name
 			});
 			NT.registerTweetMethod(function(tweet) {
-				$('#log').append('<p>MOOD: ' + tweet.mood + ' => ' + tweet.text + '</p>');
+				// TODO: method stub
+				// tweet.mood = int between -100 and 100
+				// tweet.text = the tweet text
 			});
 			$(document).ready(function() {
 				NT.setup();
 			});
 		</script>
-	</head>
-
-	<body>
-		<div id="log">
-
-		</div>
-	</body>
+    </body>
 </html>

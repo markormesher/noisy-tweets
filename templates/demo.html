@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script type="text/javascript" src="static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+		<script type="text/javascript" src="static/js/noisytweets.js"></script>
+		<script type="text/javascript">
+			NT.registerLogMethod(function(msg) {
+				$('#log').append('<p>LOG: ' + msg + '</p>');
+			});
+			NT.registerEmojiMethod(function(which) {
+				$('#log').append('<p>EMOJI: <img src="static/emoji-data/img-hangouts-20/' + which + '" /></p>');
+			});
+			NT.registerTweetMethod(function(tweet) {
+				$('#log').append('<p>MOOD: ' + tweet.mood + ' => ' + tweet.text + '</p>');
+			});
+			$(document).ready(function() {
+				NT.setup();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="log">
+
+		</div>
+	</body>
+</html>
