@@ -1,4 +1,5 @@
 import json
+import thread
 import sys
 
 from tweepy.streaming import StreamListener
@@ -6,6 +7,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 
 from config import *
+from flaskserver import start_server
 from tweetanalyser import TweetAnalyser
 
 class StreamHandler(StreamListener):
@@ -31,4 +33,5 @@ if __name__ == '__main__':
     auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
+    thread.start_new_thread(start_server, ())
     NoisyTweets(auth, sys.argv[1])
