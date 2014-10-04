@@ -81,7 +81,6 @@ addTweet = function(tweet_message, mood) {
 
 // Add emojis
 addEmoji = function(imgLink) {
-    console.log(imgLink);
     $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
 };
 
@@ -99,6 +98,8 @@ processMoodQueue = function() {
 		pendingMoodQueue = [];
     }
 
+	playSound(averageMood);
+
     graphLabels.shift();
     graphData.shift();
 
@@ -111,7 +112,7 @@ processMoodQueue = function() {
 
     setTimeout(function() {
         processMoodQueue();
-    }, 500);
+    }, 250);
 };
 
 processMoodQueue();
