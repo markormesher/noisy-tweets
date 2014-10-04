@@ -87,12 +87,14 @@ addTweet = function(tweet_message, mood) {
 
     pendingMoodQueue.push(mood);
 
-	//$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
+	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
+	$('tbody').find('tr').slice(50,1000).remove();
 };
 
 // Add emojis
 addEmoji = function(imgLink) {
-    //$('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+	$('div#emojis-section p').find('img').slice(50,1000).remove();
 };
 
 processMoodQueue = function() {
