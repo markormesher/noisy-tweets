@@ -1,6 +1,9 @@
 var graphLabels = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+var pendingMoodQueue = [];
+var lastMoodPushed = 0;
+
 // GRAPH
 
 // Get the context of the canvas element we want to select
@@ -71,13 +74,7 @@ addTweet = function(tweet_message, mood) {
         style = "super-success";
     }
     
-    graphLabels.shift();
-    graphData.shift();
-    
-    graphLabels.push("");
-    graphData.push(mood);
-    
-    redraw();
+    pendingMoodQueue.push(mood);
     
 	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
 };
@@ -87,6 +84,37 @@ addEmoji = function(imgLink) {
     console.log(imgLink);
     $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
 };
+
+processMoodQueue = function() {
+    
+    var averageMood = lastMoodPushed;
+    
+    if(processMoodQueue.length != 0) {
+        var sum = 0;
+        for(var i = 0; i < processMoodQueue.length; ++i) {
+            sum += processMoodQueue[i];
+        }
+        
+        averageMood = Math.round(sum/processMoodQueue.length);
+        processMoodQueue = [];
+    }
+    
+    graphLabels.shift();
+    graphData.shift();
+    
+    graphLabels.push("");
+    graphData.push(averageMood);
+
+    redraw();
+    
+    lastMoodPushed = averageMood;
+    
+    setTimeout(function() {
+        processMoodQueue();
+    }, 1000);
+}
+
+processMoodQueue();
 
 $(function () {
     $('.tltp').tooltip();
