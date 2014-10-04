@@ -1,5 +1,5 @@
 body {
- margin-top: 20px;   
+ margin-top: 20px;
 }
 
 .emoji-row {
@@ -16,11 +16,13 @@ body {
 
 #emojis-section {
     width:100%;
-    overflow-x:scroll !important;
+    overflow-x:hidden;
 }
 
 #emojis-section p {
+    width: 100%;
     margin:10px 0;
+    white-space: nowrap;
 }
 
 .table > thead > tr > td.super-success,
