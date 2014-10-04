@@ -11,7 +11,7 @@ from flaskserver import start_server
 from tweetanalyser import TweetAnalyser
 
 class StreamHandler(StreamListener):
-    
+
     def __init__(self, analyser):
         self._analyser = analyser
 
@@ -29,9 +29,12 @@ class NoisyTweets:
         stream = Stream(auth, StreamHandler(TweetAnalyser()))
         stream.filter(track=[keyword])
 
-if __name__ == '__main__':
-    auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+try:
+    if __name__ == '__main__':
+        auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+        auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-    thread.start_new_thread(start_server, ())
-    NoisyTweets(auth, sys.argv[1])
+        thread.start_new_thread(start_server, ())
+        NoisyTweets(auth, sys.argv[1])
+except KeyboardInterrupt:
+    print 'Bye bye!'

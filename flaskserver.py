@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask.ext.socketio import SocketIO, emit
+from flask.ext.socketio import SocketIO
 
 
 # app setup
@@ -20,7 +20,7 @@ def index():
 
 @socketio.on('connect', namespace='/noisytweets')
 def test_connect():
-    emit('connect okay', {'data': 'Connected'})
+    socketio.emit('connect okay', {'data': 'Connected'}, namespace='/noisytweets')
 
 
 @socketio.on('disconnect', namespace='/noisytweets')
@@ -32,15 +32,15 @@ def test_disconnect():
 
 
 def send_log_message(msg):
-    emit('log message', {'msg': msg})
+    socketio.emit('log message', {'msg': msg}, namespace='/noisytweets')
 
 
 def send_emoji_event(which):
-    emit('emoji event', {'which': which})
+    socketio.emit('emoji event', {'which': which}, namespace='/noisytweets')
 
 
 def send_mood_event(mood):
-    emit('mood event', {'mood': mood})
+    socketio.emit('mood event', {'mood': mood}, namespace='/noisytweets')
 
 
 # done
