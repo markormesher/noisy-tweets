@@ -39,8 +39,8 @@ def send_emoji_event(which):
     socketio.emit('emoji event', {'which': which}, namespace='/noisytweets')
 
 
-def send_mood_event(mood):
-    socketio.emit('mood event', {'mood': mood}, namespace='/noisytweets')
+def send_tweet_event(tweet):
+    socketio.emit('tweet event', tweet, namespace='/noisytweets')
 
 
 # done
