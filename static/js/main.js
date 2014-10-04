@@ -56,39 +56,34 @@ redraw = function() {
     });
 
     $("#moodChart").html("<canvas id=\"moodChart\" height=\"400\" width=\"710\"></canvas>");
-}
+};
 
 // Add a tweet to the table
 
-// -100 ~ -60
-// -60 ~ -20
-// -20 - 20
-// 20 ~ 60
-// 60 ~ 100
-addTweets = function(tweet_message, mood) {
+addTweet = function(tweet_message, mood) {
 
     var style;
-    
-    if(mood < -60) {
+
+    if(mood <= -60) {
         style = "super-danger";
-    } else if (mood >= -59 && mood <= -20) {
+    } else if (mood <= -20) {
         style = "danger";
-    } else if (mood >= -19 && mood <= 20) {
+    } else if (mood <= 20) {
         style = "";
-    } else if (mood >= 21 && mood <= 60) {
+    } else if (mood <= 60) {
         style = "success";
-    } else if (mood > 60) {
+    } else {
         style = "super-success";
     }
-    
-    $( "tbody" ).prepend( "<tr class=\"" + style + "\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );
-}
+
+	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
+};
 
 // Add emojis
-addEmojis = function(imgLink) {
+addEmoji = function(imgLink) {
     console.log(imgLink);
-    $( "#emojis-section p" ).append('<img src="static/emoji-data/img-hangouts-20/' + imgLink + '" />');
-}
+    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+};
 
 $(function () {
     $('.tltp').tooltip();
