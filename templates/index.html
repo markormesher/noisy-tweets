@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Noisy Tweets</title>
 
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="static/css/bootstrap.css"/>
         <link rel="stylesheet" href="static/css/cerulean-bootstrap.min.css"/>
         <link rel="stylesheet" href="static/css/site.css"/>
@@ -54,6 +53,7 @@
         </div>
 		<script type="text/javascript" src="static/js/jquery.min.js"></script>
 		<script type="text/javascript" src="static/js/Chart.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 		<script type="text/javascript" src="static/js/noisytweets.js"></script>
 		<script type="text/javascript" src="static/js/main.js"></script>
@@ -63,11 +63,11 @@
 				console.log(msg);
 			});
 			NT.registerEmojiMethod(function(which) {
-				
+
 				addEmojis(which);
 			});
 			NT.registerTweetMethod(function(tweet) {
-				
+
 				addTweets(tweet.text, tweet.mood);
 			});
 			$(document).ready(function() {
