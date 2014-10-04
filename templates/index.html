@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Noisy Tweets</title>
 
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="static/css/bootstrap.css"/>
         <link rel="stylesheet" href="static/css/cerulean-bootstrap.min.css"/>
         <link rel="stylesheet" href="static/css/site.css"/>
@@ -15,7 +14,7 @@
 
         <div class="container">
             <div id="logo" class="row text-center">
-                <h1>Noisy Tweets <span id="stop-btn" class="pull-right glyphicon glyphicon-stop"></span></h1>
+                <h1>Noisy Tweets <span id="play-btn" class="pull-right glyphicon glyphicon-play tltp" data-toggle="tooltip" data-placement="left" title="Click to stop music"></h1>
             </div>
             <br />
 
@@ -54,22 +53,22 @@
         </div>
 		<script type="text/javascript" src="static/js/jquery.min.js"></script>
 		<script type="text/javascript" src="static/js/Chart.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 		<script type="text/javascript" src="static/js/noisytweets.js"></script>
 		<script type="text/javascript" src="static/js/main.js"></script>
 		<script type="text/javascript">
 			NT.registerLogMethod(function(msg) {
-				// TODO: method stub
-				// msg = the log message
+
+				console.log(msg);
 			});
 			NT.registerEmojiMethod(function(which) {
-				// TODO: method stub
-				// which = image file name
+
+				addEmojis(which);
 			});
 			NT.registerTweetMethod(function(tweet) {
-				// TODO: method stub
-				// tweet.mood = int between -100 and 100
-				// tweet.text = the tweet text
+
+				addTweets(tweet.text, tweet.mood);
 			});
 			$(document).ready(function() {
 				NT.setup();
