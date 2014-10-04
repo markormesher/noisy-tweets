@@ -84,14 +84,14 @@ addTweet = function(tweet_message, mood) {
         style = "super-success";
     }
 
-	//$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
-	$('tbody').find('tr').slice(50,1000).remove();
+	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
+	$('tbody').find('tr').slice(20,1000).remove();
 };
 
 // add emoji
 addEmoji = function(imgLink) {
-    //$('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
-	$('div#emojis-section p').find('img').slice(50,1000).remove();
+    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+	$('div#emojis-section p').find('img').slice(20,1000).remove();
 };
 
 // process all moods that have arrived since the last cycle
