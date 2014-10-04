@@ -1,7 +1,5 @@
-
-
-var graphLabels = ["", "", "", "", "", "", "", ""];
-var graphData = [65, 59, 80, 81, 56, 55, 40, -13];
+var graphLabels = [];
+var graphData = [];
 
 // GRAPH
 
@@ -31,10 +29,8 @@ var myLineChart = new Chart(ctx).Line(data, {
 
 redraw = function() {
     var ctx = document.getElementById("moodChart").getContext("2d");
-    // TODO Remove animation
     var data = {
-        // TODO: Assign graphLabels to this
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: graphLabels
         datasets: [
             {
                 label: "Live Mood Dataset",
@@ -44,7 +40,7 @@ redraw = function() {
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#ffaaaa",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: graphData
             }
         ]
     };
@@ -75,7 +71,12 @@ addTweet = function(tweet_message, mood) {
     } else {
         style = "super-success";
     }
-
+    
+    graphLabels.push("");
+    graphData.push(mood);
+    
+    redraw();
+    
 	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
 };
 
