@@ -4,7 +4,7 @@ var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var pendingMoodQueue = [];
 var lastMoodPushed = 0;
 
-// GRAPH
+var soundsOn = true;
 
 // set up graph
 $("#moodChart").html("<canvas id=\"moodChart\" height=\"400\" width=\"710\"></canvas>");
@@ -14,7 +14,6 @@ var data = {
     labels: graphLabels,
     datasets: [
         {
-            label: "Live Mood Dataset",
             fillColor: "transparent",
             strokeColor: "rgba(40,40,40,1)",
             pointColor: "rgba(220,220,220,1)",
@@ -33,8 +32,8 @@ new Chart(ctx).Line(data, {
 	showScale: true,
 	scaleOverride: true,
 	scaleStartValue: -100,
-	scaleStepWidth: 2,
-	scaleSteps: 100
+	scaleStepWidth: 10,
+	scaleSteps: 20
 });
 
 redraw = function() {
@@ -43,7 +42,6 @@ redraw = function() {
         labels: graphLabels,
         datasets: [
             {
-                label: "Live Mood Dataset",
                 fillColor: "transparent",
                 strokeColor: "rgba(40,40,40,1)",
                 pointColor: "rgba(220,220,220,1)",
@@ -62,17 +60,18 @@ redraw = function() {
 		showScale: true,
 		scaleOverride: true,
 		scaleStartValue: -100,
-		scaleStepWidth: 2,
-		scaleSteps: 100
+		scaleStepWidth: 10,
+		scaleSteps: 20
     });
 };
 
-// Add a tweet to the table
-
+// add tweet
 addTweet = function(tweet_message, mood) {
+	// add mood to pending queue
+    pendingMoodQueue.push(mood);
 
+	// determine display
     var style;
-
     if(mood <= -60) {
         style = "super-danger";
     } else if (mood <= -20) {
@@ -85,44 +84,44 @@ addTweet = function(tweet_message, mood) {
         style = "super-success";
     }
 
-    pendingMoodQueue.push(mood);
-
-	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
+	//$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
 	$('tbody').find('tr').slice(50,1000).remove();
 };
 
-// Add emojis
+// add emoji
 addEmoji = function(imgLink) {
-    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+    //$('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
 	$('div#emojis-section p').find('img').slice(50,1000).remove();
 };
 
+// process all moods that have arrived since the last cycle
 processMoodQueue = function() {
 
+	// calc average of latest moods
     var averageMood = lastMoodPushed;
-
     if(pendingMoodQueue.length != 0) {
         var sum = 0;
         for(var i = 0; i < pendingMoodQueue.length; ++i) {
             sum += pendingMoodQueue[i];
         }
-
         averageMood = Math.round(sum/pendingMoodQueue.length);
 		pendingMoodQueue = [];
     }
 
-	playSound(averageMood);
+	// play sound
+	if (soundsOn) {
+		playSound(averageMood);
+	}
 
-    graphLabels.shift();
+	// add to graph
     graphData.shift();
-
-    graphLabels.push("");
     graphData.push(averageMood);
-
     redraw();
 
+	// store
     lastMoodPushed = averageMood;
 
+	// repeat
     setTimeout(function() {
         processMoodQueue();
     }, 250);
@@ -130,29 +129,15 @@ processMoodQueue = function() {
 
 processMoodQueue();
 
-$(function () {
-    $('.tltp').tooltip();
-});
-
+// play/pause button
 $('#play-btn').click(function() {
-    if ($(this).hasClass('glyphicon-play') ) {
-
-            $(this).removeClass('glyphicon-play');
-            $(this).addClass('glyphicon-pause');
-            $(this).attr('title', 'Click to play music')
-                      .tooltip('fixTitle')
-                      .data('bs.tooltip')
-                      .$tip.find('.tooltip-inner')
-                      .text('Click to play music');
-
-    } else if ($(this).hasClass('glyphicon-pause')) {
-
-        $(this).removeClass('glyphicon-pause');
-        $(this).addClass('glyphicon-play');
-        $(this).attr('title', 'Click to stop music')
-                      .tooltip('fixTitle')
-                      .data('bs.tooltip')
-                      .$tip.find('.tooltip-inner')
-                      .text('Click to stop music');
-    }
+	if ($(this).hasClass('glyphicon-play') ) {
+		soundsOn = true;
+		$(this).removeClass('glyphicon-play');
+		$(this).addClass('glyphicon-pause');
+	} else {
+		soundsOn = false;
+		$(this).removeClass('glyphicon-pause');
+		$(this).addClass('glyphicon-play');
+	}
 });
