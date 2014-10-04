@@ -30,4 +30,6 @@ var data = {
     ]
 };
 
-var myLineChart = new Chart(ctx).Line(data);
+var myLineChart = new Chart(ctx).Line(data, {
+    showScale: true
+});
