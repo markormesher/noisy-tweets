@@ -1,6 +1,7 @@
 
 
-var graphLabels = [""]
+var graphLabels = ["", "", "", "", "", "", "", ""];
+var graphData = [65, 59, 80, 81, 56, 55, 40, -13];
 
 // GRAPH
 
@@ -8,7 +9,7 @@ var graphLabels = [""]
 var ctx = document.getElementById("moodChart").getContext("2d");
 
 var data = {
-    labels: ["", "", "", "", "", "", ""],
+    labels: graphLabels,
     datasets: [
         {
             label: "Live Mood Dataset",
@@ -19,7 +20,7 @@ var data = {
             pointHighlightFill: "#ffaaaa",
             pointHighlightStroke: "rgba(220,220,220,1)",
             // TODO: Assign array of data here
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: graphData
         }
     ]
 };
@@ -30,7 +31,7 @@ var myLineChart = new Chart(ctx).Line(data, {
 
 redraw = function() {
     var ctx = document.getElementById("moodChart").getContext("2d");
-
+    // TODO Remove animation
     var data = {
         // TODO: Assign graphLabels to this
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -49,19 +50,37 @@ redraw = function() {
     };
 
     var myLineChart = new Chart(ctx).Line(data, {
-        showScale: true
+        animation: false,
+        scaleShowGridLines: false,
+        scaleShowLabels: false
     });
     
     $("#moodChart").html("<canvas id=\"moodChart\" height=\"400\" width=\"710\"></canvas>");
 }
 
+// Add a tweet to the table
+
+// -100 ~ -60
+// -60 ~ -20
+// -20 - 20
+// 20 ~ 60
+// 60 ~ 100
 addTweets = function(tweet_message, mood) {
     
-    if(mood < -50) {
+    if(mood < -60) {
+        $( "tbody" ).append( "<tr class=\"super-danger\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
+    } else if (mood >= -59 && mood <= -20) {
         $( "tbody" ).append( "<tr class=\"danger\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
-    } else if (mood > 50) {
-        $( "tbody" ).append( "<tr class=\"success\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
-    } else {
+    } else if (mood >= -19 && mood <= 20) {
         $( "tbody" ).append( "<tr><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
+    } else if (mood >= 21 && mood <= 60) {
+        $( "tbody" ).append( "<tr class=\"success\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
+    } else if (mood > 60) {
+        $( "tbody" ).append( "<tr class=\"super-success\"><td>" + tweet_message + "</td><td>" + mood + "</td></tr>" );   
     }
+}
+
+// Add emojis
+addEmojis = function(imgLink) {
+    $( "emojis-section p" ).append( "<img src=" + imgLink + ">" );   
 }
