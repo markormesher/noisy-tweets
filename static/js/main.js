@@ -1,7 +1,8 @@
+var graphLabels = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-
-var graphLabels = ["", "", "", "", "", "", "", ""];
-var graphData = [65, 59, 80, 81, 56, 55, 40, -13];
+var pendingMoodQueue = [];
+var lastMoodPushed = 0;
 
 // GRAPH
 
@@ -19,7 +20,6 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#ffaaaa",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            // TODO: Assign array of data here
             data: graphData
         }
     ]
@@ -31,10 +31,8 @@ var myLineChart = new Chart(ctx).Line(data, {
 
 redraw = function() {
     var ctx = document.getElementById("moodChart").getContext("2d");
-    // TODO Remove animation
     var data = {
-        // TODO: Assign graphLabels to this
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: graphLabels,
         datasets: [
             {
                 label: "Live Mood Dataset",
@@ -44,7 +42,7 @@ redraw = function() {
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#ffaaaa",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: graphData
             }
         ]
     };
@@ -76,6 +74,8 @@ addTweet = function(tweet_message, mood) {
         style = "super-success";
     }
 
+    pendingMoodQueue.push(mood);
+
 	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
 };
 
@@ -84,6 +84,37 @@ addEmoji = function(imgLink) {
     console.log(imgLink);
     $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
 };
+
+processMoodQueue = function() {
+
+    var averageMood = lastMoodPushed;
+
+    if(pendingMoodQueue.length != 0) {
+        var sum = 0;
+        for(var i = 0; i < pendingMoodQueue.length; ++i) {
+            sum += pendingMoodQueue[i];
+        }
+
+        averageMood = Math.round(sum/pendingMoodQueue.length);
+		pendingMoodQueue = [];
+    }
+
+    graphLabels.shift();
+    graphData.shift();
+
+    graphLabels.push("");
+    graphData.push(averageMood);
+
+    redraw();
+
+    lastMoodPushed = averageMood;
+
+    setTimeout(function() {
+        processMoodQueue();
+    }, 500);
+};
+
+processMoodQueue();
 
 $(function () {
     $('.tltp').tooltip();
