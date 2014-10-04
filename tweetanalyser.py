@@ -5,7 +5,7 @@ from random import randrange
 class TweetAnalyser:
 
     def __init__(self):
-        self._emojidata = json.load(open('emoji-data/emoji.json'))
+        self._emojidata = json.load(open('static/emoji-data/emoji.json'))
 
     def _extract_emojis(self, tweet):
         emojis = []
