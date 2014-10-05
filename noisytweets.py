@@ -19,7 +19,11 @@ class StreamHandler(StreamListener):
 
     def on_data(self, data):
         datadict = json.loads(data)
-        self._analyser.incoming_tweet(datadict['text'])
+        try:
+            self._analyser.incoming_tweet(datadict['text'])
+        except KeyError:
+            # no text - skip
+            pass
         return True
 
     def on_error(self, status):
