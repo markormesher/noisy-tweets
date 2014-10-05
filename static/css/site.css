@@ -1,5 +1,5 @@
 body {
- margin-top: 20px;
+ margin-top: 10px;
 }
 
 .emoji-row {
@@ -53,4 +53,37 @@ body {
 .table > tbody > tr.super-danger > th,
 .table > tfoot > tr.super-danger > th {
   background-color: #EE7979;
+}
+
+/* fonts */
+
+h1, h2 {
+    margin: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+/* play/pause button */
+
+div#pause_container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+div#pause_container span {
+    font-size: 3em;
+    font-weight: bold;
+    color: #317eac;
+}
+
+div#pause_container span:hover {
+    color: #333333;
 }
