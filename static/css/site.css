@@ -70,7 +70,7 @@ h2 {
     font-size: 1.2em;
 }
 
-/* play/pause button */
+/* buttons */
 
 div#pause_container {
     position: absolute;
@@ -78,12 +78,19 @@ div#pause_container {
     right: 20px;
 }
 
-div#pause_container span {
+div#change_container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+div#pause_container span, div#change_container span {
     font-size: 3em;
     font-weight: bold;
     color: #317eac;
+    cursor: pointer;
 }
 
-div#pause_container span:hover {
+div#pause_container span:hover, div#change_container span:hover {
     color: #333333;
 }

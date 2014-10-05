@@ -29,6 +29,9 @@ NT = {
 			NT.runTweetMethods(input);
 		});
 	},
+	changeKeyword: function(new_keyword) {
+		this.socket.emit('change keyword', {'new_keyword':new_keyword});
+	},
 	runLogMethods: function(msg) {
 		for (var i = 0; i < this.logMethods.length; ++i) {
 			this.logMethods[i](msg);

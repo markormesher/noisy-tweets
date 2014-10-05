@@ -141,3 +141,12 @@ $('#play-btn').click(function() {
 		$(this).addClass('glyphicon-play');
 	}
 });
+
+// change keyword
+changeKeyword = function (new_keyword) {
+	NT.changeKeyword(new_keyword);
+};
+
+$('#change-btn').click(function (){
+	changeKeyword(prompt("New keyword?"));
+});

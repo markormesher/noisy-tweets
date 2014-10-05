@@ -28,6 +28,12 @@ def test_disconnect():
     print('Client disconnected')
 
 
+@socketio.on('change keyword', namespace='/noisytweets')
+def test_disconnect(data):
+    print('Changing to: ' + data['new_keyword'])
+    # TODO: figure out how to change the filter
+
+
 # communication methods
 
 
