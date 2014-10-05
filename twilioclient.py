@@ -11,6 +11,8 @@ def change_tone_nonblocking(newtone):
     thread.start_new_thread(change_tone, (newtone,))
 
 def change_tone(newtone):
+    if TWILIO_SERVER_URL = '':
+        return False
     response = urllib2.urlopen(TWILIO_SERVER_URL + '/changetone/' + str(newtone) + '/' + TWILIO_SERVER_SECRET).read()
     if response == 'True':
         return True
