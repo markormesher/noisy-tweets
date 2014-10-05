@@ -92,8 +92,8 @@ addTweet = function(tweet_message, mood) {
         style = "super-success";
     }
 
-	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td>' + mood + '</td></tr>').prependTo('tbody');
-	$('tbody').find('tr').slice(20,1000).remove();
+	$('<tr class="' + style + '"><td>' + tweet_message + '</td><td style="text-align: center;">' + mood + '</td></tr>').prependTo('#tweets-table tbody');
+	$('#tweets-table').find('tbody').find('tr').slice(20,1000).remove();
 };
 
 // add emoji

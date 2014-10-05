@@ -2,6 +2,8 @@ body {
  margin-top: 10px;
 }
 
+/* emojis */
+
 .emoji-row {
     padding-top: 5px;
     padding-bottom: 30px;
@@ -23,6 +25,13 @@ body {
     width: 100%;
     margin:10px 0;
     white-space: nowrap;
+}
+
+/* tweets */
+
+table#tweets-table tbody tr td {
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .table > thead > tr > td.super-success,
