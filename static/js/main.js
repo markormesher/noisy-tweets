@@ -1,5 +1,14 @@
-var graphLabels = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
-var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// settings
+var graphSize = 20;
+
+var graphLabels = [];
+var graphData = [];
+var graphBaseLine = [];
+for (var i = 0; i < graphSize; ++i) {
+	graphLabels[i] = "";
+	graphData[i] = 0;
+	graphBaseLine[i] = 0;
+}
 
 var pendingMoodQueue = [];
 var lastMoodPushed = 0;
@@ -14,14 +23,11 @@ var data = {
     labels: graphLabels,
     datasets: [
         {
-            fillColor: "transparent",
-            strokeColor: "rgba(40,40,40,1)",
-            pointColor: "rgba(220,220,220,1)",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#ffaaaa",
-            pointHighlightStroke: "rgba(220,220,220,1)",
             data: graphData
-        }
+        },
+		{
+			data: graphBaseLine
+		}
     ]
 };
 
@@ -41,13 +47,14 @@ redraw = function() {
     var data = {
         labels: graphLabels,
         datasets: [
+			{
+				fillColor: "transparent",
+				strokeColor: "#c0c0c0",
+				data: graphBaseLine
+			},
             {
-                fillColor: "transparent",
-                strokeColor: "rgba(40,40,40,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#ffaaaa",
-                pointHighlightStroke: "rgba(220,220,220,1)",
+				fillColor: "transparent",
+				strokeColor: "#333333",
                 data: graphData
             }
         ]
@@ -61,7 +68,8 @@ redraw = function() {
 		scaleOverride: true,
 		scaleStartValue: -100,
 		scaleStepWidth: 10,
-		scaleSteps: 20
+		scaleSteps: 20,
+		pointDot: false
     });
 };
 
