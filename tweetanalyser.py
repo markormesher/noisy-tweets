@@ -2,6 +2,7 @@ import json
 import flaskserver
 from textblob import TextBlob
 import twilioclient
+import sys
 
 class TweetAnalyser:
 
@@ -27,7 +28,8 @@ class TweetAnalyser:
             flaskserver.send_emoji_event(e['image'])
         mood = int(TextBlob(tweet).sentiment.polarity * 100)
         tone = int(float(float(mood + 100) / 200) * 86) + 1
-        twilioclient.change_tone_nonblocking(tone)
+        if len(sys.argv) > 2:
+            twilioclient.change_tone_nonblocking(tone)
         flaskserver.send_tweet_event({
             'text': tweet,
             'mood': mood,
