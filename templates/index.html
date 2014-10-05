@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Noisy Tweets</title>
 
         <link rel="stylesheet" href="static/css/bootstrap.css"/>
@@ -13,51 +13,48 @@
 
     <body>
         <div class="container">
-			<div id="pause_container">
-				<span id="play-btn" class="pull-right glyphicon glyphicon-pause"></span>
-			</div>
-
 			<div id="change_container">
 				<span id="change-btn" class="pull-right glyphicon glyphicon-refresh"></span>
 			</div>
 
+			<div id="pause_container">
+				<span id="play-btn" class="pull-right glyphicon glyphicon-pause"></span>
+			</div>
+
             <h1><img src="static/img/logo.jpg" width="230px" height="91px" /></h1>
-			<h2><em>(a.k.a. Twitter Plays Piano)</em>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;Listening to: <strong id="listening-to">???</strong></h2>
+			<h2><em>(a.k.a. Twitter Plays Piano)</em>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;&nbsp;Listening to: <strong style="text-decoration: underline;" id="listening-to">???</strong></h2>
 
             <br />
 
-				<div class="row well">
-					<div id="emojis-section">
-						<p></p>
+			<div class="row well" style="padding: 0;">
+				<div id="emojis-section">
+					<p style="margin: 5px;"></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div id="left-container" class="col-sm-4">
+					<div id="tweets">
+						<h4>Live Tweets</h4>
+						<table id="tweets-table" class="table">
+							<thead>
+								<tr>
+									<th>Tweet</th>
+									<th>Mood</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
 					</div>
 				</div>
 
-			<div class="row">
-                <div id="left-container" class="col-sm-4">
-                    <div id="tweets" class="">
-                            <h4>Live Tweets</h4>
-                            <table id="tweets-table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Tweet</th>
-                                        <th>Mood</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                    </div>
-                </div>
-
-                <div id="right-container" class="col-sm-8">
-                    <div class="">
-                        <canvas id="moodChart" width="710" height="400"></canvas>
-                   </div>
-                </div>
-            </div>
-        </div>
+				<div id="right-container" class="col-sm-8">
+					<div>
+						<canvas id="moodChart" width="710" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
 		<script type="text/javascript" src="static/js/Chart.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
