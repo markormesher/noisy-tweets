@@ -98,7 +98,7 @@ addTweet = function(tweet_message, mood) {
 // add emoji
 addEmoji = function(imgLink) {
     $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
-	$('div#emojis-section p').find('img').slice(20,1000).remove();
+	$('div#emojis-section p').find('img').slice(40,42).remove();
 };
 
 // process all moods that have arrived since the last cycle
