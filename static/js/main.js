@@ -4,7 +4,7 @@ var graphData =   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var pendingMoodQueue = [];
 var lastMoodPushed = 0;
 
-var soundsOn = true;
+var playing = true;
 
 // set up graph
 $("#moodChart").html("<canvas id=\"moodChart\" height=\"400\" width=\"710\"></canvas>");
@@ -108,15 +108,15 @@ processMoodQueue = function() {
 		pendingMoodQueue = [];
     }
 
-	// play sound
-	if (soundsOn) {
+	if (playing) {
+		// play sound
 		playSound(averageMood);
-	}
 
-	// add to graph
-    graphData.shift();
-    graphData.push(averageMood);
-    redraw();
+		// add to graph
+		graphData.shift();
+		graphData.push(averageMood);
+		redraw();
+	}
 
 	// store
     lastMoodPushed = averageMood;
@@ -132,11 +132,11 @@ processMoodQueue();
 // play/pause button
 $('#play-btn').click(function() {
 	if ($(this).hasClass('glyphicon-play') ) {
-		soundsOn = true;
+		playing = true;
 		$(this).removeClass('glyphicon-play');
 		$(this).addClass('glyphicon-pause');
 	} else {
-		soundsOn = false;
+		playing = false;
 		$(this).removeClass('glyphicon-pause');
 		$(this).addClass('glyphicon-play');
 	}
