@@ -12,4 +12,3 @@ TWILIO_FROM = ''
 # Twilioserver creds
 TWILIO_SERVER_SECRET = ''
 TWILIO_SERVER_URL = ''
-TWILIO_AUTH_TOKEN = ''
