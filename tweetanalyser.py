@@ -33,5 +33,6 @@ class TweetAnalyser:
         flaskserver.send_tweet_event({
             'text': tweet,
             'mood': mood,
-            'tone': tone
+            'tone': tone,
+            'keyword': flaskserver.mate.keyword
         })

@@ -2,6 +2,20 @@ from flask import Flask, render_template
 from flask.ext.socketio import SocketIO
 
 
+# mate
+
+
+class Mate:
+    def __init__(self):
+        pass
+
+    def set_keyword(self, k):
+        self.keyword = k
+
+
+mate = Mate()
+
+
 # app setup
 
 
