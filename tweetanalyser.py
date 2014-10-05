@@ -26,8 +26,10 @@ class TweetAnalyser:
         for e in emojis:
             flaskserver.send_emoji_event(e['image'])
         mood = int(TextBlob(tweet).sentiment.polarity * 100)
-        twilioclient.change_tone_nonblocking(int((((mood + 100)/200)*86)) + 1)
+        tone = int(float(float(mood + 100) / 200) * 86) + 1
+        twilioclient.change_tone_nonblocking(tone)
         flaskserver.send_tweet_event({
             'text': tweet,
-            'mood': mood
+            'mood': mood,
+            'tone': tone
         })
