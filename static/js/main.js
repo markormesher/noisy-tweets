@@ -1,5 +1,5 @@
 // settings
-var graphSize = 20;
+var graphSize = 50;
 
 var graphLabels = [];
 var graphData = [];
@@ -37,8 +37,9 @@ new Chart(ctx).Line(data, {
 	showScale: true,
 	scaleOverride: true,
 	scaleStartValue: -100,
-	scaleStepWidth: 10,
-	scaleSteps: 20
+	scaleStepWidth: 100,
+	scaleSteps: 2,
+	scaleLabel: "<%=value%>"
 });
 
 redraw = function() {
@@ -62,12 +63,16 @@ redraw = function() {
     new Chart(ctx).Line(data, {
         animation: false,
         scaleShowGridLines: false,
-        scaleShowLabels: false,
+        scaleShowLabels: true,
+		showTooltips: false,
 		showScale: true,
 		scaleOverride: true,
 		scaleStartValue: -100,
-		scaleStepWidth: 10,
-		scaleSteps: 20,
+		scaleStepWidth: 25,
+		scaleSteps: 8,
+		scaleLabel: "<%=(value==100?'☀':(value==-100?'☂':(value==0?'☁':'')))%>",
+		scaleFontSize: 32,
+		scaleFontStyle: "bold",
 		pointDot: false
     });
 };
@@ -97,7 +102,7 @@ addTweet = function(tweet_message, mood) {
 
 // add emoji
 addEmoji = function(imgLink) {
-    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />').prependTo('div#emojis-section p');
+    $('<img src="static/emoji-data/img-hangouts-28/' + imgLink + '" />&nbsp;&nbsp;&nbsp;').prependTo('div#emojis-section p');
 	$('div#emojis-section p').find('img').slice(40,42).remove();
 };
 
@@ -130,7 +135,7 @@ processMoodQueue = function() {
 	// repeat
     setTimeout(function() {
         processMoodQueue();
-    }, 250);
+    }, 100);
 };
 
 processMoodQueue();
