@@ -14,7 +14,7 @@
 
         <div class="container">
             <div id="logo" class="row text-center">
-                <h1>Noisy Tweets <span id="play-btn" class="pull-right glyphicon glyphicon-play tltp" data-toggle="tooltip" data-placement="left" title="Click to stop music"></h1>
+                <h1>Noisy Tweets <span id="play-btn" class="pull-right glyphicon glyphicon-play tltp" data-toggle="tooltip" data-placement="left" title="Click to stop music"></span></h1>
             </div>
             <br />
 
@@ -23,7 +23,7 @@
                     <div class="row well">
                         <h4>Emoji Stream</h4>
                         <div id="emojis-section">
-                            <p>Hi</p>
+                            <p></p>
                         </div>
                     </div>
 
@@ -56,20 +56,22 @@
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 		<script type="text/javascript" src="static/js/noisytweets.js"></script>
+		<script type="text/javascript" src="static/js/soundmanager2-jsmin.js"></script>
+		<script type="text/javascript" src="static/js/play-sounds.js"></script>
 		<script type="text/javascript" src="static/js/main.js"></script>
 		<script type="text/javascript">
 			NT.registerLogMethod(function(msg) {
-
 				console.log(msg);
 			});
+
 			NT.registerEmojiMethod(function(which) {
-
-				addEmojis(which);
+				addEmoji(which);
 			});
+
 			NT.registerTweetMethod(function(tweet) {
-
-				addTweets(tweet.text, tweet.mood);
+				addTweet(tweet.text, tweet.mood);
 			});
+
 			$(document).ready(function() {
 				NT.setup();
 			});
