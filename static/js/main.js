@@ -11,7 +11,6 @@ for (var i = 0; i < graphSize; ++i) {
 }
 
 var pendingMoodQueue = [];
-var lastMoodPushed = 0;
 
 var playing = true;
 
@@ -106,8 +105,10 @@ addEmoji = function(imgLink) {
 processMoodQueue = function() {
 
 	// calc average of latest moods
-    var averageMood = lastMoodPushed;
+    var averageMood = 0;
+	var newSound = false;
     if(pendingMoodQueue.length != 0) {
+		newSound = true;
         var sum = 0;
         for(var i = 0; i < pendingMoodQueue.length; ++i) {
             sum += pendingMoodQueue[i];
@@ -118,16 +119,13 @@ processMoodQueue = function() {
 
 	if (playing) {
 		// play sound
-		playSound(averageMood);
+		if (newSound) playSound(averageMood);
 
 		// add to graph
 		graphData.shift();
 		graphData.push(averageMood);
 		redraw();
 	}
-
-	// store
-    lastMoodPushed = averageMood;
 
 	// repeat
     setTimeout(function() {
