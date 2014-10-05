@@ -3,3 +3,7 @@
 .idea/
 *.iml
 *.iws
+
+# Python
+
+*.pyc
