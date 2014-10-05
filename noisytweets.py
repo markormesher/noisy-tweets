@@ -9,6 +9,7 @@ from tweepy import Stream
 from config import *
 from flaskserver import start_server
 from tweetanalyser import TweetAnalyser
+import twilioclient
 
 class StreamHandler(StreamListener):
 
@@ -35,6 +36,8 @@ try:
         auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
         thread.start_new_thread(start_server, ())
+        if len(sys.argv) > 2:
+            twilioclient.make_call(sys.argv[2])
         NoisyTweets(auth, sys.argv[1])
 except KeyboardInterrupt:
     print 'Bye bye!'

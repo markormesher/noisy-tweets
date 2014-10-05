@@ -5,15 +5,18 @@ from twilio.rest import TwilioRestClient
 
 from config import *
 
-client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+if TWILIO_ACCOUNT_SID != '':
+    client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 def change_tone_nonblocking(newtone):
     thread.start_new_thread(change_tone, (newtone,))
 
 def change_tone(newtone):
-    if TWILIO_SERVER_URL = '':
+    if TWILIO_SERVER_URL == '':
         return False
-    response = urllib2.urlopen(TWILIO_SERVER_URL + '/changetone/' + str(newtone) + '/' + TWILIO_SERVER_SECRET).read()
+    url = urllib2.urlopen(TWILIO_SERVER_URL + '/changetone/' + str(newtone) + '/' + TWILIO_SERVER_SECRET)
+    response = url.read()
+    url.close()
     if response == 'True':
         return True
     else:
